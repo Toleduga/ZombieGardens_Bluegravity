@@ -4,49 +4,53 @@ using UnityEngine;
 
 public class TopDownCharacterController : MonoBehaviour
 {
-    public float speed;                 // The movement speed of the player.
+    public float speed;    
+    
+    public Rigidbody2D rb;
 
-    private Animator animator;          // Reference to the Animator component.
+    public float directionX;
+    public float directionY;
+
+    public Animator[] animator;          
+    
+    Vector2  movement;
 
     private void Start()
     {
         // Get the Animator component attached to this object.
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        Vector2 dir = Vector2.zero;     // Initialize a direction vector.
+        // Input
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-        // Check input keys for movement and set the direction and corresponding animation.
-        if (Input.GetKey(KeyCode.A))
+        foreach (Animator _animator in animator )
         {
-            dir.x = -1;
-            animator.SetInteger("Direction", 3);  // Set animation direction for left.
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            dir.x = 1;
-            animator.SetInteger("Direction", 2);  // Set animation direction for right.
-        }
+            _animator.SetFloat("Horizontal", movement.x);
+            _animator.SetFloat("Vertical", movement.y);
+            _animator.SetInteger("Speed", (int)movement.sqrMagnitude);
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            dir.y = 1;
-            animator.SetInteger("Direction", 1);  // Set animation direction for up.
+            if (movement != Vector2.zero)
+            {
+                directionX = movement.x;
+                directionY = movement.y;
+                _animator.SetFloat("DirectionX", directionX);
+                _animator.SetFloat("DirectionY", directionY);
+            }
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            dir.y = -1;
-            animator.SetInteger("Direction", 0);  // Set animation direction for down.
-        }
+        
 
-        dir.Normalize();   // Normalize the direction vector to ensure consistent speed in all directions.
+        
+        
+        
 
-        // Set a boolean parameter to control the "IsMoving" animation state.
-        animator.SetBool("IsMoving", dir.magnitude > 0);
+    }
 
-        // Move the player using Rigidbody2D based on the calculated direction and speed.
-        GetComponent<Rigidbody2D>().velocity = speed * dir;
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 }
