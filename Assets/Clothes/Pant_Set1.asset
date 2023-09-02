@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4817c6d99953d1341b757b8690290f16, type: 3}
+  m_Name: Pant_Set1
+  m_EditorClassIdentifier: 
+  ClotheColor: Grape
+  type: 2
+  sprite: {fileID: 525935204, guid: 1efa23d55fb77db46b14e4108df77bad, type: 3}
+  id: 8
+  price: 20
+  acquired: 0
