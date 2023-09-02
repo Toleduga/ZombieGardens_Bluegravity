@@ -8,13 +8,23 @@ public class PlayerInteractor : MonoBehaviour
     private TopDownCharacterController topDownCharacterController;
 
     public GameObject button1;
+    public GameObject popUpDeath;
+    public GameObject popUpFinish;
 
     public GameObject shop;
+    public GameObject inventory;
     public GameObject diffuse;
-    public int flowers = 0;
+
+    public AudioSource audioFlower;
+
+    public Animator animatorUI;
+    public int flowers = 1;
+
+    public Clothe[] cloths;
 
     bool interacSeller;
     bool interacFlower;
+    bool interacInventory;
 
     GameObject objectInterac;
     void Start()
@@ -72,9 +82,46 @@ public class PlayerInteractor : MonoBehaviour
         {
             interacFlower = false;
             button1.SetActive(false);
+            audioFlower.Play();
             Destroy(objectInterac);
             flowers += 1;
         }
+        if (Input.GetKey(KeyCode.B) && (!interacSeller))
+        {
+            if (CheckFinsh())
+            {
+                topDownCharacterController.UImode = true;
+                popUpFinish.SetActive(true);
+            }
+            else {
+                inventory.SetActive(true);
+                diffuse.SetActive(true);
+                topDownCharacterController.PlayerModeUI(true);
+            }
+            
+        }
+    }
+
+    public void AnimLess()
+    {
+        animatorUI.SetTrigger("Less");
+    }
+
+    public void DeathPlayer()
+    {
+        topDownCharacterController.UImode = true;
+        popUpDeath.SetActive(true);
+    }
+
+    public bool CheckFinsh()
+    {
+        bool finish = true;
+        foreach (Clothe _clothe in cloths)
+        {
+            finish = finish && _clothe.acquired;
+        }
+
+        return finish;
     }
 
 }

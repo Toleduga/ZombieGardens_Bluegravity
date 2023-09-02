@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClotheColor: Grape
   type: 0
-  sprite: {fileID: 1413087368, guid: e990276150b327d4ca1232e8e8b62f73, type: 3}
+  sprite: {fileID: -310338567, guid: e990276150b327d4ca1232e8e8b62f73, type: 3}
   id: 2
+  slot: 1
   price: 10
-  acquired: 0
+  acquired: 1

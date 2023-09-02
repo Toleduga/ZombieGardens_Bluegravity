@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Seller
   - Flower
+  - Zombie
   layers:
   - Default
   - TransparentFX

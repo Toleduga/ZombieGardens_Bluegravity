@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClotheColor: Green
   type: 0
-  sprite: {fileID: -1437419294, guid: ef60ad656c14d024db0bbca8209650db, type: 3}
+  sprite: {fileID: 1597558743, guid: ef60ad656c14d024db0bbca8209650db, type: 3}
   id: 1
+  slot: 0
   price: 10
-  acquired: 0
+  acquired: 1

@@ -9,6 +9,7 @@ public class ClotheItem : MonoBehaviour
     public Toggle toggle;
     private Image image;
     private ShopController shopcontroller;
+    public bool ShopInventory;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class ClotheItem : MonoBehaviour
 
     private void Update()
     {
-        if (clothe.acquired)
+        if ((ShopInventory) && (clothe.acquired))
         {
             toggle.interactable = false;
         }
@@ -30,6 +31,8 @@ public class ClotheItem : MonoBehaviour
         shopcontroller.SetPrice(clothe.price);
         shopcontroller.clotheSelected = clothe;
     }
+
+
 
     
 

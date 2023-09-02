@@ -10,8 +10,14 @@ public class ShopController : MonoBehaviour
     private PlayerInteractor playerInteractor;
     public Clothe clotheSelected;
 
+    private TopDownCharacterController topDownCharacterController;
+    public Clothe[] cloths;
+    public GameObject popUpFinish;
+    public GameObject difuse;
+
     public void OnEnable()
     {
+        topDownCharacterController = FindObjectOfType<TopDownCharacterController>();
         playerInteractor = FindObjectOfType<PlayerInteractor>();
     }
     public void SetGroup(int indexGroup)
@@ -49,4 +55,32 @@ public class ShopController : MonoBehaviour
         }
         
     }
+
+    public void CloseShop()
+    {
+        if (CheckFinsh())
+        {
+            topDownCharacterController.UImode = true;
+            difuse.SetActive(false);
+            this.gameObject.SetActive(false);
+            popUpFinish.SetActive(true);
+        }
+        else
+        {
+            topDownCharacterController.UImode = false;
+            difuse.SetActive(false);
+            this.gameObject.SetActive(false);
+        }
+    }
+    public bool CheckFinsh()
+    {
+        bool finish = true;
+        foreach (Clothe _clothe in cloths)
+        {
+            finish = finish && _clothe.acquired;
+        }
+
+        return finish;
+    }
+
 }

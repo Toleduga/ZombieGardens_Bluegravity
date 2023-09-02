@@ -24,8 +24,7 @@ public class ClothesCheck : MonoBehaviour
             if (_chothe.activeSelf)
             {
                 animator = _chothe.GetComponent<Animator>();
-            }
-            
+            }  
         }
         CharacterController.animator[index] = animator; 
     }

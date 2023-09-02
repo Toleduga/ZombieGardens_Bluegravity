@@ -9,6 +9,7 @@ public class Clothe : ScriptableObject
     public TypeClothes type;
     public Sprite sprite;
     public int id;
+    public int slot;
     public int price;
     public bool acquired;
 }
