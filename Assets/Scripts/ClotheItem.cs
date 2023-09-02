@@ -14,12 +14,10 @@ public class ClotheItem : MonoBehaviour
     {
         shopcontroller = FindObjectOfType<ShopController>();
         image = gameObject.GetComponent<Image>();
-        image.sprite = clothe.sprite;
-
-        
+ 
     }
 
-    private void OnEnable()
+    private void Update()
     {
         if (clothe.acquired)
         {

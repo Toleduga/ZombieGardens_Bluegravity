@@ -10,6 +10,7 @@ public class TopDownCharacterController : MonoBehaviour
 
     public float directionX;
     public float directionY;
+    public bool UImode;
 
     public Animator[] animator;          
     
@@ -21,31 +22,38 @@ public class TopDownCharacterController : MonoBehaviour
         //animator = GetComponent<Animator>();
     }
 
+    public void PlayerModeUI(bool _mode)
+    {
+        UImode = _mode;
+    }
     private void Update()
     {
         // Input
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        foreach (Animator _animator in animator )
+        if (!UImode)
         {
-            _animator.SetFloat("Horizontal", movement.x);
-            _animator.SetFloat("Vertical", movement.y);
-            _animator.SetInteger("Speed", (int)movement.sqrMagnitude);
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
 
-            if (movement != Vector2.zero)
+            foreach (Animator _animator in animator)
             {
-                directionX = movement.x;
-                directionY = movement.y;
-                _animator.SetFloat("DirectionX", directionX);
-                _animator.SetFloat("DirectionY", directionY);
+                _animator.SetFloat("Horizontal", movement.x);
+                _animator.SetFloat("Vertical", movement.y);
+                _animator.SetInteger("Speed", (int)movement.sqrMagnitude);
+
+                if (movement != Vector2.zero)
+                {
+                    directionX = movement.x;
+                    directionY = movement.y;
+                    _animator.SetFloat("DirectionX", directionX);
+                    _animator.SetFloat("DirectionY", directionY);
+                }
             }
         }
-        
-
-        
-        
-        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 6;
+        }
+        else { speed = 4; }
 
     }
 

@@ -7,9 +7,13 @@ public class ShopController : MonoBehaviour
 {
     public GameObject[] clothesGroup;
     public TMP_Text priceText;
-
+    private PlayerInteractor playerInteractor;
     public Clothe clotheSelected;
 
+    public void OnEnable()
+    {
+        playerInteractor = FindObjectOfType<PlayerInteractor>();
+    }
     public void SetGroup(int indexGroup)
     {
         CleanGroup();
@@ -37,6 +41,12 @@ public class ShopController : MonoBehaviour
 
     public void BuyItem()
     {
-        clotheSelected.acquired = true;
+        if (playerInteractor.flowers >= clotheSelected.price)
+        {
+            playerInteractor.flowers -= clotheSelected.price;
+            clotheSelected.acquired = true;
+            CleanPrice();
+        }
+        
     }
 }
