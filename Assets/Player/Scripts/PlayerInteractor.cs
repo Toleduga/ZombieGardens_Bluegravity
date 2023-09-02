@@ -9,7 +9,7 @@ public class PlayerInteractor : MonoBehaviour
 
     public GameObject button1;
     public GameObject popUpDeath;
-    public GameObject popUpFinish;
+    
 
     public GameObject shop;
     public GameObject inventory;
@@ -20,7 +20,7 @@ public class PlayerInteractor : MonoBehaviour
     public Animator animatorUI;
     public int flowers = 1;
 
-    public Clothe[] cloths;
+    
 
     bool interacSeller;
     bool interacFlower;
@@ -88,19 +88,13 @@ public class PlayerInteractor : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.B) && (!interacSeller))
         {
-            if (CheckFinsh())
-            {
-                topDownCharacterController.UImode = true;
-                popUpFinish.SetActive(true);
-            }
-            else {
-                inventory.SetActive(true);
-                diffuse.SetActive(true);
-                topDownCharacterController.PlayerModeUI(true);
-            }
-            
+            inventory.SetActive(true);
+            diffuse.SetActive(true);
+            topDownCharacterController.PlayerModeUI(true);
+ 
         }
     }
+
 
     public void AnimLess()
     {
@@ -113,15 +107,6 @@ public class PlayerInteractor : MonoBehaviour
         popUpDeath.SetActive(true);
     }
 
-    public bool CheckFinsh()
-    {
-        bool finish = true;
-        foreach (Clothe _clothe in cloths)
-        {
-            finish = finish && _clothe.acquired;
-        }
 
-        return finish;
-    }
 
 }
